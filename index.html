@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Change Your Star Sign</title>
+	<link rel="stylesheet" href="simple.css">
+	<style>
+		body > header {
+			padding-bottom: 0;
+			display: grid;
+			grid-template-columns: 1fr;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 52 52'%3E%3Cpath fill='%23d4d9ec' fill-opacity='0.4' d='M0 17.83V0h17.83a3 3 0 0 1-5.66 2H5.9A5 5 0 0 1 2 5.9v6.27a3 3 0 0 1-2 5.66zm0 18.34a3 3 0 0 1 2 5.66v6.27A5 5 0 0 1 5.9 52h6.27a3 3 0 0 1 5.66 0H0V36.17zM36.17 52a3 3 0 0 1 5.66 0h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 0 1 0-5.66V52H36.17zM0 31.93v-9.78a5 5 0 0 1 3.8.72l4.43-4.43a3 3 0 1 1 1.42 1.41L5.2 24.28a5 5 0 0 1 0 5.52l4.44 4.43a3 3 0 1 1-1.42 1.42L3.8 31.2a5 5 0 0 1-3.8.72zm52-14.1a3 3 0 0 1 0-5.66V5.9A5 5 0 0 1 48.1 2h-6.27a3 3 0 0 1-5.66-2H52v17.83zm0 14.1a4.97 4.97 0 0 1-1.72-.72l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1 0-5.52l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43c.53-.35 1.12-.6 1.72-.72v9.78zM22.15 0h9.78a5 5 0 0 1-.72 3.8l4.44 4.43a3 3 0 1 1-1.42 1.42L29.8 5.2a5 5 0 0 1-5.52 0l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1-.72-3.8zm0 52c.13-.6.37-1.19.72-1.72l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43a5 5 0 0 1 5.52 0l4.43-4.43a3 3 0 1 1 1.42 1.41l-4.44 4.43c.36.53.6 1.12.72 1.72h-9.78zm9.75-24a5 5 0 0 1-3.9 3.9v6.27a3 3 0 1 1-2 0V31.9a5 5 0 0 1-3.9-3.9h-6.27a3 3 0 1 1 0-2h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 1 1 2 0v6.27a5 5 0 0 1 3.9 3.9h6.27a3 3 0 1 1 0 2H31.9z'%3E%3C/path%3E%3C/svg%3E");
+
+			div {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			img {
+				margin: 3px;
+				animation: rotate 12s linear infinite;
+				max-width: 260px;
+			}
+
+			@media screen and (min-width: 700px) {
+				grid-template-columns: 140px 1fr 140px;
+
+				div {
+					align-items: unset;
+				}
+			}
+		}
+
+		@keyframes rotate {
+			0% {
+				transform: rotateZ(0deg);
+			}
+			100% {
+				transform: rotateZ(-360deg);
+			}
+		}
+
+		.zodiac {
+			display: grid;
+			flex-wrap: wrap;
+			list-style: none;
+			padding: 0;
+			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+			gap: 0.5rem;
+
+			li {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 0.25rem;
+				border: 0.25rem solid #ccc;
+				border-radius: 0.5rem;
+				background: transparent;
+				transition: background 0.5s, border-color 0.75s;
+
+				&:hover, &:focus-within {
+					background: var(--accent-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 52 52'%3E%3Cpath fill='%23d4d9ec' fill-opacity='0.4' d='M0 17.83V0h17.83a3 3 0 0 1-5.66 2H5.9A5 5 0 0 1 2 5.9v6.27a3 3 0 0 1-2 5.66zm0 18.34a3 3 0 0 1 2 5.66v6.27A5 5 0 0 1 5.9 52h6.27a3 3 0 0 1 5.66 0H0V36.17zM36.17 52a3 3 0 0 1 5.66 0h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 0 1 0-5.66V52H36.17zM0 31.93v-9.78a5 5 0 0 1 3.8.72l4.43-4.43a3 3 0 1 1 1.42 1.41L5.2 24.28a5 5 0 0 1 0 5.52l4.44 4.43a3 3 0 1 1-1.42 1.42L3.8 31.2a5 5 0 0 1-3.8.72zm52-14.1a3 3 0 0 1 0-5.66V5.9A5 5 0 0 1 48.1 2h-6.27a3 3 0 0 1-5.66-2H52v17.83zm0 14.1a4.97 4.97 0 0 1-1.72-.72l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1 0-5.52l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43c.53-.35 1.12-.6 1.72-.72v9.78zM22.15 0h9.78a5 5 0 0 1-.72 3.8l4.44 4.43a3 3 0 1 1-1.42 1.42L29.8 5.2a5 5 0 0 1-5.52 0l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1-.72-3.8zm0 52c.13-.6.37-1.19.72-1.72l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43a5 5 0 0 1 5.52 0l4.43-4.43a3 3 0 1 1 1.42 1.41l-4.44 4.43c.36.53.6 1.12.72 1.72h-9.78zm9.75-24a5 5 0 0 1-3.9 3.9v6.27a3 3 0 1 1-2 0V31.9a5 5 0 0 1-3.9-3.9h-6.27a3 3 0 1 1 0-2h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 1 1 2 0v6.27a5 5 0 0 1 3.9 3.9h6.27a3 3 0 1 1 0 2H31.9z'%3E%3C/path%3E%3C/svg%3E");
+					border-color: var(--accent-hover);
+				}
+			}
+
+			.button {
+				width: 100%;
+				text-align: center;
+			}
+
+			h3 {
+				margin: 0
+			}
+
+			svg {
+				width: 75%;
+				height: auto;
+				margin: 1.5rem 0;
+			}
+
+			p {
+				flex-grow: 1;
+			}
+		}
+
+		summary {
+			word-break: break-word;
+		}
+
+		dt {
+			font-weight: bold;
+			float: left;
+			width: 6em;
+			margin-right: 0.5em;
+		}
+
+		footer ul {
+			display: flex;
+			padding: 0;
+			list-style: none;
+			gap: 1rem;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		dialog {
+			min-width: min(780px, 90vw);
+
+			h2 {
+				margin-top: 0;
+			}
+
+			p:has(img) {
+				text-align: center;
+			}
+
+			img {
+				max-height: 45vh;
+			}
+		}
+
+		.close {
+			float: right;
+			height: 2em;
+			aspect-ratio: 1;
+			padding: 0;
+			font-size: 150%;
+			font-weight: bold;
+			margin: 0 0 1rem 1rem;
+		}
+</style>
+</head>
+<body>
+	<header>
+		<div>
+			<img src="zodiac-260.png" alt="">
+		</div>
+		<div>
+			<h1>Change Your Star Sign</h1>
+			<p>
+				Thanks to <a href="#faq-how">this one weird fact</a>, you can change your zodiac sign today!
+			</p>
+		</div>
+	</header>
+
+	<main>
+		<section id="change">
+			<h2>Choose your new star sign</h2>
+			<p>
+				Click on the button under your new star sign to make it official.
+			</p>
+			<ul class="zodiac">
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M23 17C22 11 19 1 9 1 4 1 3 3 3 3c12 1 11 15 11 15M25 17c1-6 4-16 14-16 5 0 6 2 6 2-12 1-11 15-11 15" opacity=".3"/><circle cx="18" cy="29" r="2"/><circle cx="30" cy="29" r="2"/><path d="M13 19v10.343a4 4 0 0 0 1.172 2.829L17 35l2.03 8.119A5.123 5.123 0 0 0 24 47a5.123 5.123 0 0 0 4.97-3.881L31 35l2.828-2.828A4 4 0 0 0 35 29.343V19a31.25 31.25 0 0 0-22 0z" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M27 39.677a3.1 3.1 0 0 1-6 0M24 42v5M10 21.8A10 10 0 0 1 2 12h6a5 5 0 0 1 5 5v5M38 21.8a10 10 0 0 0 8-9.8h-6a5 5 0 0 0-5 5v5" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M23 17C22 11 19 1 9 1 4 1 3 3 3 3c12 1 11 15 11 15M25 17c1-6 4-16 14-16 5 0 6 2 6 2-12 1-11 15-11 15" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Capricorn</h3>
+					<p>Serious, independent, disciplined, tenacious</p>
+					<button class="button" popovertarget="capricorn">Become a Capricorn</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M26.423 22.839c2.489 6.038-1.309 9.469-5.532 12C16.237 37.635 9.515 41 9.515 41l-3.758-3.757L2 33.485s3.365-6.722 6.158-11.376c2.534-4.223 5.965-8.021 12-5.532l1.878-5.636 10.02 10.02z" opacity=".3"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="m26.423 22.839-2.505-2.504M26.423 22.839c2.489 6.038-1.309 9.469-5.532 12C16.237 37.635 9.515 41 9.515 41l-3.758-3.757L2 33.485s3.365-6.722 6.158-11.376c2.534-4.223 5.965-8.021 12-5.532l1.878-5.636 10.02 10.02z"/><path d="M27 12a5 5 0 0 1 10 0v25a5 5 0 1 0 5-5" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M36 5a5 5 0 0 1 5 5v18M30 36a3 3 0 1 0 3 3V27" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><circle cx="7" cy="12" r="1"/><path d="M13.719 5.328A9.51 9.51 0 0 1 12 3a9.51 9.51 0 0 1-1.719 2.328A9.509 9.509 0 0 1 8 7a9.5 9.5 0 0 1 4 4 9.5 9.5 0 0 1 4-4 9.509 9.509 0 0 1-2.281-1.672z"/></g></svg>
+					<h3>Aquarius</h3>
+					<p>Deep, imaginative, original, uncompromising</p>
+					<button class="button" popovertarget="aquarius">Become an Aquarius</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M13 21a10 10 0 0 1-8.849-5.349A19.472 19.472 0 0 0 4 18c0 11.25 9 19 9 19s9-7.75 9-19a19.472 19.472 0 0 0-.151-2.349A10 10 0 0 1 13 21zM35 27a10 10 0 0 1 8.849 5.349A19.472 19.472 0 0 0 44 30c0-11.25-9-19-9-19s-9 7.75-9 19a19.472 19.472 0 0 0 .151 2.349A10 10 0 0 1 35 27z" opacity=".3"/><path d="M13 37s9-7.75 9-19a16.1 16.1 0 0 0-9-15 16.1 16.1 0 0 0-9 15c0 11.25 9 19 9 19z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M5 46v-2a8 8 0 0 1 8-8v2a8 8 0 0 1-8 8zM13 36a8 8 0 0 1 8 8v2a8 8 0 0 1-8-8v-2zM43 2v2a8 8 0 0 1-8 8v-2a8 8 0 0 1 8-8zM35 12a8 8 0 0 1-8-8V2a8 8 0 0 1 8 8v2z"/><circle cx="11" cy="11" r="2"/><path d="M4.151 15.651a9.994 9.994 0 0 0 17.7 0" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M3 18v12h5c-3-5-4-12-4-12z"/><path d="M35 11s-9 7.75-9 19a16.1 16.1 0 0 0 9 15 16.1 16.1 0 0 0 9-15c0-11.25-9-19-9-19z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><circle cx="37" cy="37" r="2"/><path d="M43.849 32.349a9.994 9.994 0 0 0-17.7 0" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M45 30V18h-5c3 5 4 12 4 12z"/></g></svg>
+					<h3>Pisces</h3>
+					<p>Affectionate, empathetic, wise, artistic</p>
+					<button class="button" popovertarget="pisces">Become a Pisces</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M2.444 17.9A40.055 40.055 0 0 0 2.25 22c0 11.984 3.34 17.148 5.626 17.813 1.791.52 3.748-.521 5.457-2.73-4.333.25-6.5-3.333-6.818-8.57A49.9 49.9 0 0 1 6.75 20a6.214 6.214 0 0 1-4.306-2.1zM15 14c-3.208-4.375-8.5-4.25-12 0zM45.556 17.9a40.055 40.055 0 0 1 .194 4.1c0 11.984-3.34 17.148-5.626 17.813-1.791.52-3.748-.521-5.457-2.73 4.333.25 6.5-3.333 6.818-8.57A49.9 49.9 0 0 0 41.25 20a6.214 6.214 0 0 0 4.306-2.1zM33 14c3.208-4.375 8.5-4.25 12 0z" opacity=".3"/><circle cx="18" cy="28" r="2"/><circle cx="30" cy="28" r="2"/><path d="M11 20H7a6 6 0 0 1-6-6h14M37 20h4a6 6 0 0 0 6-6H33M15 14l-2.6 12.145a4 4 0 0 0 .787 3.337L16 33l2.824 9.177a5.415 5.415 0 0 0 10.352 0L32 33l2.815-3.518a4 4 0 0 0 .787-3.337L33 14a41 41 0 0 0-18 0z" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M27 38.677a3.1 3.1 0 0 1-6 0M24 41v5M2.444 17.9A40.055 40.055 0 0 0 2.25 22c0 11.984 3.34 17.148 5.626 17.813 1.791.52 3.748-.521 5.457-2.73-4.333.25-6.5-3.333-6.818-8.57a46.2 46.2 0 0 1 .018-6.261M24 13C22.4 7.054 18.863 2 12 2 8.214 2 4.588 6.629 3.036 14" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M15 14c-3.208-4.375-8.5-4.25-12 0M45.556 17.9a40.055 40.055 0 0 1 .194 4.1c0 11.984-3.34 17.148-5.626 17.813-1.791.52-3.748-.521-5.457-2.73 4.333.25 6.5-3.333 6.818-8.57a46.2 46.2 0 0 0-.018-6.261M24 13c1.605-5.946 5.137-11 12-11 3.786 0 7.412 4.629 8.964 12" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M33 14c3.208-4.375 8.5-4.25 12 0" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Aries</h3>
+					<p>Eager, dynamic, quick, competitive</p>
+					<button class="button" popovertarget="aries">Become an Aries</button>
+				</li>	
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M38 16h2a7 7 0 0 0 7-7V2h-.08A6.994 6.994 0 0 1 40 8h-6zM14 8H8a6.994 6.994 0 0 1-6.92-6H1v7a7 7 0 0 0 7 7h2z" opacity=".3"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="m18 31 2-8"/><path d="M20 24h-2.037a3.178 3.178 0 0 1-2.841-1.755L14 20h4.72A2.28 2.28 0 0 1 21 22.28V23a1 1 0 0 1-1 1z"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="m30 31-2-8"/><path d="M28 24h2.037a3.178 3.178 0 0 0 2.841-1.755L34 20h-4.72A2.28 2.28 0 0 0 27 22.28V23a1 1 0 0 0 1 1z"/><path d="m15 35-3.118-4.988a7 7 0 0 1-.563-6.31L12 22l-2-6 4-8h20l4 8-2 6 .681 1.7a7 7 0 0 1-.563 6.31L33 35M31 41v1a3 3 0 0 1-3 3h-8a3 3 0 0 1-3-3v-1" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M18.459 31h11.082a3 3 0 0 1 2.941 2.412l.8 4A3 3 0 0 1 30.341 41H17.659a3 3 0 0 1-2.941-3.588l.8-4A3 3 0 0 1 18.459 31z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><circle cx="19.5" cy="36.5" r="1.5"/><circle cx="28.5" cy="36.5" r="1.5"/><path d="M9 23H7a6 6 0 0 1-6-6h9M39 23h2a6 6 0 0 0 6-6h-9" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M38 16h2a7 7 0 0 0 7-7V2h-.08A6.994 6.994 0 0 1 40 8h-6M14 8H8a6.994 6.994 0 0 1-6.92-6H1v7a7 7 0 0 0 7 7h2" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Taurus</h3>
+					<p>Strong, dependable, sensual, creative</p>
+					<button class="button" popovertarget="taurus">Become a Taurus</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="m10.562 18.787 3.741 1.87a4.05 4.05 0 0 0 0-3.74zM33.7 16.917a4.05 4.05 0 0 0 0 3.74l3.741-1.87z" opacity=".3"/><path d="M8.519 44A17.007 17.007 0 0 1 7 37h5.4a3 3 0 0 0 2.97-2.576L16 30l3.991-1.6a1 1 0 0 0 .523-1.376L17 20C17 10 14.339 5 4 5" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M13 7.367C4.76 10.75 9.5 18.361 1 28.962" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M39.481 44A17.007 17.007 0 0 0 41 37h-5.4a3 3 0 0 1-2.97-2.576L32 30l-3.991-1.6a1 1 0 0 1-.523-1.376L31 20c0-10 2.661-15 13-15" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M35 7.367c8.237 3.383 3.5 10.994 12 21.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M25.719 5.328A9.51 9.51 0 0 1 24 3a9.51 9.51 0 0 1-1.719 2.328A9.509 9.509 0 0 1 20 7a9.5 9.5 0 0 1 4 4 9.5 9.5 0 0 1 4-4 9.509 9.509 0 0 1-2.281-1.672z"/></g></svg>
+					<h3>Gemini</h3>
+					<p>Versatile, expressive, curious, kind</p>
+					<button class="button" popovertarget="gemini">Become a Gemini</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M9.331 12C8.25 8 9 5.312 12.071 2.613A8.02 8.02 0 1 0 16.6 7.5 12.219 12.219 0 0 1 9.331 12zM38.669 12c1.081-4 .331-6.687-2.74-9.387A8.02 8.02 0 1 1 31.4 7.5a12.219 12.219 0 0 0 7.269 4.5z" opacity=".3"/><circle cx="17" cy="22" r="2"/><circle cx="31" cy="22" r="2"/><path d="M9.331 12C8.25 8 9 5.312 12.071 2.613A8.02 8.02 0 1 0 16.6 7.5 12.219 12.219 0 0 1 9.331 12zM24 26c-7.236 0-13.414 3.192-15.867 7.69a1.982 1.982 0 0 0 .979 2.732l14.08 6.221a2 2 0 0 0 1.616 0l14.08-6.221a1.982 1.982 0 0 0 .979-2.732C37.414 29.192 31.236 26 24 26z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M16 46a7.97 7.97 0 0 1 2.236-5.547M10 46a13.937 13.937 0 0 1 2.548-8.055M32 46a7.97 7.97 0 0 0-2.236-5.547M38 46a13.937 13.937 0 0 0-2.548-8.055M5 17s-2 8 5 10" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M38.669 12c1.081-4 .331-6.687-2.74-9.387A8.02 8.02 0 1 1 31.4 7.5a12.219 12.219 0 0 0 7.269 4.5z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M43 17s2 8-5 10" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Cancer</h3>
+					<p>Intuitive, sentimental, loving, protective</p>
+					<button class="button" popovertarget="cancer">Become a Cancer</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M42.667 13.583a5.984 5.984 0 0 1 2.833 1.334c-.333-5.667-5.458-5-8.5-10 0 0 1.5.125 2-1.917-2.333.013-5-3-10-1a12.133 12.133 0 0 0-5-1 12.133 12.133 0 0 0-5 1c-5-2-7.667 1.013-10 1 .5 2.042 2 1.917 2 1.917-3.042 5-8.167 4.333-8.5 10a5.984 5.984 0 0 1 2.833-1.334C-3.417 32 8.581 42.167 8.581 42.167A18.447 18.447 0 0 1 9.333 38c2.834 8.5 11.084 5.5 14.667 8.833C27.583 43.5 35.833 46.5 38.667 38a18.447 18.447 0 0 1 .752 4.167S51.417 32 42.667 13.583zm-4.179 10.534-3.94 5.571h-.013a4.989 4.989 0 0 1 .657 4.141l-.363 1.27A4 4 0 0 1 30.983 38H30v1a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3v-1h-.983a4 4 0 0 1-3.846-2.9l-.363-1.27a4.989 4.989 0 0 1 .657-4.141h-.012l-3.941-5.572a5 5 0 0 1-.646-4.57l2.744-7.776a6.339 6.339 0 0 1 8.812-3.56 8 8 0 0 0 7.156 0 6.339 6.339 0 0 1 8.812 3.56l2.744 7.776a5 5 0 0 1-.646 4.57z" opacity=".3"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="m19 30 2-8"/><path d="M21 23h-2.037a3.178 3.178 0 0 1-2.841-1.755L15 19h4.72A2.28 2.28 0 0 1 22 21.28V22a1 1 0 0 1-1 1z"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="m29 30-2-8"/><path d="M27 23h2.037a3.178 3.178 0 0 0 2.841-1.755L33 19h-4.72A2.28 2.28 0 0 0 26 21.28V22a1 1 0 0 0 1 1z"/><path d="M19.425 29h9.15a.5.5 0 0 1 .312.89l-3.613 2.891a1 1 0 0 1-.625.219h-1.3a1 1 0 0 1-.625-.219l-3.611-2.891a.5.5 0 0 1 .312-.89z" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M30 38v1a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3v-1M24 35v-2" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M24 33v1a4 4 0 0 1-4 4h-2.983a4 4 0 0 1-3.846-2.9l-.363-1.27a5 5 0 0 1 1.272-4.91L16 27M24 33v1a4 4 0 0 0 4 4h2.983a4 4 0 0 0 3.846-2.9l.363-1.27a5 5 0 0 0-1.272-4.91L32 27" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="m34.548 29.688 3.94-5.571a5 5 0 0 0 .646-4.57l-2.744-7.776a6.339 6.339 0 0 0-8.812-3.56 8 8 0 0 1-7.156 0 6.339 6.339 0 0 0-8.812 3.56l-2.744 7.776a5 5 0 0 0 .646 4.57l3.941 5.571" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M24 46.833C27.583 43.5 35.833 46.5 38.667 38a18.447 18.447 0 0 1 .752 4.167s12-10.167 3.248-28.584a5.984 5.984 0 0 1 2.833 1.334c-.333-5.667-5.458-5-8.5-10 0 0 1.5.125 2-1.917-2.333.013-5-3-10-1a12.133 12.133 0 0 0-5-1 12.133 12.133 0 0 0-5 1c-5-2-7.667 1.013-10 1 .5 2.042 2 1.917 2 1.917-3.042 5-8.167 4.333-8.5 10a5.984 5.984 0 0 1 2.833-1.334C-3.417 32 8.581 42.167 8.581 42.167A18.447 18.447 0 0 1 9.333 38c2.834 8.5 11.084 5.5 14.667 8.833z" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Leo</h3>
+					<p>Dramatic, outgoing, firey, self-assured</p>
+					<button class="button" popovertarget="leo">Become a Leo</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M17 46a14.211 14.211 0 0 1-1.952-7.453H20.6a3.086 3.086 0 0 0 3.055-2.65l.65-4.552 4.108-1.645a1.028 1.028 0 0 0 .538-1.415l-3.615-7.23c0-6.454-1.077-10.884-4.506-13.289 0 0-.638 5.058-6.811 9.173A13.292 13.292 0 0 0 7.846 27.23C.387 21.057-.385 12.826 2.7 7.682S11.19.823 17.106 1.337c7.559.658 12.419 8 13.632 18.005C33 38 45 34 45 34s-2 16-28 12z" opacity=".3"/><path d="m18.681 19.924 3.848 1.924a4.165 4.165 0 0 0 0-3.848z"/><path d="M17 46a14.211 14.211 0 0 1-1.952-7.453H20.6a3.086 3.086 0 0 0 3.055-2.65l.65-4.552 4.108-1.645a1.028 1.028 0 0 0 .538-1.415l-3.615-7.23c0-6.454-1.077-10.884-4.506-13.289 0 0-.638 5.058-6.811 9.173A13.292 13.292 0 0 0 7.846 27.23C.387 21.057-.385 12.826 2.7 7.682S11.19.823 17.106 1.337c7.559.658 12.419 8 13.632 18.005C33 38 45 34 45 34s-2 16-28 12z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><circle cx="41" cy="17" r="1"/><path d="M38.719 8.328A9.51 9.51 0 0 1 37 6a9.5 9.5 0 0 1-4 4 9.5 9.5 0 0 1 4 4 9.5 9.5 0 0 1 4-4 9.509 9.509 0 0 1-2.281-1.672z"/><path d="M32.485 26.672c3 2 6.1 1.828 10.1-.172a6.213 6.213 0 0 1-2.166 5.208" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Virgo</h3>
+					<p>Practical, loyal, gentle, analytical</p>
+					<button class="button" popovertarget="virgo">Become a Virgo</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M9 32a8 8 0 0 0 8-8H1a8 8 0 0 0 8 8zM39 32a8 8 0 0 1-8-8h16a8 8 0 0 1-8 8z" opacity=".3"/><path fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2" d="M24 10v24"/><circle cx="24" cy="7" r="3" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M17 24a8 8 0 0 1-16 0l8-10z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M1 24h16M24 38a6 6 0 0 1 6 6H18a6 6 0 0 1 6-6z"/><path d="m21.058 7.588-9.316 1.864a6 6 0 0 1-4.925-1.2L4 6M31 24a8 8 0 0 0 16 0l-8-10z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M47 24H31"/><path d="m26.942 7.588 9.316 1.864a6 6 0 0 0 4.925-1.2L44 6" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Libra</h3>
+					<p>Social, fair, diplomatic, gracious</p>
+					<button class="button" popovertarget="libra">Become a Libra</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path d="M37.319 37.056a3 3 0 0 1 1.332-4.028c.687-.345 2.231-2.241 1.332-4.028l2.7 5.36a3 3 0 1 1-5.36 2.7zM7.923 10.589C5.839 7.081 5.431 4.367 6.577 1.08a4.312 4.312 0 0 0-2.27.165C1.339 2.313.149 6.555 1.648 10.719s5.121 6.674 8.089 5.605 4.157-5.31 2.658-9.474a10.991 10.991 0 0 0-1.118-2.257c-.561 2.861-1.566 4.687-3.354 5.996zM40.077 10.589c2.084-3.508 2.492-6.222 1.346-9.509a4.312 4.312 0 0 1 2.27.165c2.968 1.068 4.158 5.31 2.659 9.474s-5.121 6.674-8.089 5.605-4.157-5.31-2.663-9.474a10.991 10.991 0 0 1 1.118-2.257c.566 2.861 1.571 4.687 3.359 5.996z" opacity=".3"/><path d="M7.923 10.589C5.839 7.081 5.431 4.367 6.577 1.08a4.312 4.312 0 0 0-2.27.165C1.339 2.313.149 6.555 1.648 10.719s5.121 6.674 8.089 5.605 4.157-5.31 2.658-9.474a10.991 10.991 0 0 0-1.118-2.257c-.561 2.861-1.566 4.687-3.354 5.996zM37.319 37.056a3 3 0 0 1 1.332-4.028c.687-.345 2.231-2.241 1.332-4.028l2.7 5.36a3 3 0 1 1-5.36 2.7zM22.626 38.515a2.067 2.067 0 0 0 2.661 0c2.019-1.787 5.626-5.791 5.626-11.581A36.909 36.909 0 0 0 28.062 13.4a2.3 2.3 0 0 0-2.137-1.4h-3.937a2.3 2.3 0 0 0-2.137 1.4A36.909 36.909 0 0 0 17 26.934c0 5.79 3.607 9.794 5.626 11.581z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M40 39a8 8 0 0 1-16 0M22 12v-2M26 12v-2" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M20.284 12.734c-4.659 4.974-9.306 10.331-17.118.819" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path d="M40.077 10.589c2.084-3.508 2.492-6.222 1.346-9.509a4.312 4.312 0 0 1 2.27.165c2.968 1.068 4.158 5.31 2.659 9.474s-5.121 6.674-8.089 5.605-4.157-5.31-2.663-9.474a10.991 10.991 0 0 1 1.118-2.257c.566 2.861 1.571 4.687 3.359 5.996z" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path d="M27.716 12.734c4.659 4.974 9.306 10.331 17.118.819M18.6 33.4l-1.472 1.472A7.265 7.265 0 0 1 11.991 37H10M17.076 28.374 15.6 29.691a7.267 7.267 0 0 1-6.023 1.738L7 31M30.924 28.374l1.48 1.317A7.264 7.264 0 0 0 36 31.422M17.4 22l-2.945 1.84a7.262 7.262 0 0 1-7.1.338L5 23M29.4 33.4l1.472 1.472A7.269 7.269 0 0 0 34 36.717M30.6 22l2.945 1.84a7.262 7.262 0 0 0 7.1.338L43 23" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></g></svg>
+					<h3>Scorpio</h3>
+					<p>Passionate, stubborn, resourceful, brave</p>
+					<button class="button" popovertarget="scorpio">Become a Scorpio</button>
+				</li>
+				<li>
+					<svg width="800" height="800" viewBox="0 0 48 48" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><g class="nc-icon-wrapper"><path opacity=".3" d="m44 4-4 13-3-6-6-3 13-4z"/><path d="M44.987 40.8c-1.3.122-1.933-.27-2.912-1.982-2.884-5.047-4.527-14.27-11.575-21.318S14.229 8.809 9.185 5.925C7.473 4.946 7.081 4.31 7.2 3.013" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M14 38h27.637M10 6.363V38M3 45l34-34"/><path fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2" d="M4 38h6v6M44 4l-4 13-3-6-6-3 13-4z"/></g></svg>
+					<h3>Sagittarius</h3>
+					<p>Extroverted, optimistic, funny, generous</p>
+					<button class="button" popovertarget="sagittarius">Become a Sagittarius</button>
+				</li>
+			</ul>
+		</section>
+
+		<section id="faq">
+			<h2>FAQ</h2>
+			<details open id="faq-how">
+				<summary>How is this even possible?</summary>
+				<p>
+					Changing your star sign is a simple process, thanks to this one weird fact:
+				</p>
+				<p>
+					<strong>Star signs only have meaning in the pseudoscience of astrology, and any value that you attach to that.</strong>
+					Once you realise this, it's easy understand that star signs are as malleable as any other part of human identity.
+				</p>
+				<p>
+					You can change your star sign with or without the help of this site.
+				</p>
+			</details>
+
+			<details id="faq-dob">
+				<summary>Does this change my date of birth?</summary>
+				<p>
+					No, your date of birth remains the same. This only changes your star sign.
+				</p>
+			</details>
+
+			<details id="faq-specifics">
+				<summary>How does this work, though, really?</summary>
+				<p>
+					This site works by decoupling your star sign from your date of birth so that your star sign is no longer
+					determined by the date of your birth, if it previously was.
+				</p>
+				<p>
+					It's a simple, painless process. It's free, and you can change your mind at any time. Just click the button, and
+					start using your new star sign.
+				</p>
+			</details>
+
+			<details id="faq-regret">
+				<summary>Can I change my star sign back?</summary>
+				<p>
+					Yes, you can change your star sign back to your original one at any time. Just select your original star sign
+					from the list above.
+				</p>
+				<p>
+					The vast majority of people are very happy after changing their star sign; virtually nobody regret their decision.
+				</p>
+			</details>
+
+			<details id="faq-how-many">
+				<summary>How many times can I change my star sign?</summary>
+				<p>
+					You can change your star sign as many times as you want, whenever you want.
+				</p>
+			</details>
+
+			<details id="faq-why">
+				<summary>Why would I want to change my star sign?</summary>
+				<p>
+					People change their star sign for all sorts of reasons, including:
+				</p>
+				<ul>
+					<li>
+						Choosing a star sign that better represents their personality or identity.
+					</li>
+					<li>
+						Improving their romantic compatibility with a partner of a normally low-compatibility star sign.
+					</li>
+					<li>
+						Trying on a new star sign to see if it suits them.
+					</li>
+					<li>
+						Avoiding an unlucky horoscope, or making the most of a lucky one belonging to a different star sign.
+					</li>
+					<li>
+						Method acting when performing a role whose character has a different star sign.
+					</li>
+				</ul>
+			</details>
+
+			<details id="faq-current">
+				<summary>What's my current star sign?</summary>
+				<p>
+					Unless they change it, most people are assigned a star sign based on the date of their birth, as follows:
+				</p>
+				<dl>
+					<dt>Capricorn</dt>
+					<dd>December 22 - January 19</dd>
+					<dt>Aquarius</dt>
+					<dd>January 20 - February 18</dd>
+					<dt>Pisces</dt>
+					<dd>February 19 - March 20</dd>
+					<dt>Aries</dt>
+					<dd>March 21 - April 19</dd>
+					<dt>Taurus</dt>
+					<dd>April 20 - May 20</dd>
+					<dt>Gemini</dt>
+					<dd>May 21 - June 20</dd>
+					<dt>Cancer</dt>
+					<dd>June 21 - July 22</dd>
+					<dt>Leo</dt>
+					<dd>July 23 - August 22</dd>
+					<dt>Virgo</dt>
+					<dd>August 23 - September 22</dd>
+					<dt>Libra</dt>
+					<dd>September 23 - October 22</dd>
+					<dt>Scorpio</dt>
+					<dd>October 23 - November 21</dd>
+					<dt>Sagittarius</dt>
+					<dd>November 22 - December 21</dd>
+				</dl>
+				<p>
+					You don't need to know your current star sign to change it using this tool. Just pick your new one!
+				</p>
+			</details>
+
+			<details id="faq-acceptance">
+				<summary>What if people don't accept my new star sign?</summary>
+				<p>
+					Unfortunately, some people hold the bigoted belief that star signs are fixed and immutable. These people are wrong.
+				</p>
+				<p>
+					You can show them the certificate of your new star sign, which is absolutely as valid as anybody else's. You're also
+					welcome to point them at this FAQ. But - sadly -for some people, nothing will convince them.
+				</p>
+				<p>
+					This can be an warning sign that these people might hold other unpaletable beliefs, e.g. about sex, gender roles, marriage,
+					sexuality, gender identity, race, etc. Probably you shouldn't be friends with such people in the first place.
+				</p>
+			</details>
+
+			<details id="faq-friend">
+				<summary>What if my friend changes their star sign?</summary>
+				<p>
+					That's great! Congratulate your friend on their new star sign and be sure to refer to them properly in the future.
+				</p>
+				<p>
+					For many people, star signs don't come up in everyday conversation very often, so it can be easy to forget that your
+					friend has a different star sign than you might have remembered. If you make a mistake, apologise and move on and endeavour
+					to do better in future, just as you would if you incorrectly addressed your friend by a former name or using the wrong
+					pronouns.
+				</p>
+			</details>
+
+			<details id="faq-gift">
+				<summary>Can I change somebody else's star sign or give them a certificate as a gift?</summary>
+				<p>
+					It's not possible to change somebody else's star sign without their knowledge and consent.
+				</p>
+				<p>
+					However, you can give them a certificate of their new star sign as a gift. It's up to them whether or not they
+					accept it and adopt their new star sign. Please be understanding if they don't: changing your star sign is a
+					personal choice.
+				</p>
+			</details>
+
+			<details id="faq-nonduodenary">
+				<summary>Can I change my star sign to something not on this list?</summary>
+				<p>
+					We understand that some people don't prescribe to the zodiac duodenary. Unfortuntately, this site can only help you with
+					the classical Western twelve signs. 
+				</p>
+				<p>
+					But if you'd like to change your star sign to e.g. Ophiuchus, to no specific sign, or to anything else, that's fine.
+					Feel free to make your own certificate based on the ones available here, if you need one.
+				</p>
+			</details>
+		</section>
+	</main>
+
+	<footer>
+		<ul>
+			<li>an open source</li>
+			<li><a href="https://things.danq.me/">thing</a></li>
+			<li>by <a href="https://danq.me/">Dan Q</a></li>
+			<li>made in HTML and CSS (no JS, no cookies, no tracking)</li>
+		</ul>
+	</footer>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="capricorn">
+		<button class="close" popovertarget="capricorn" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Capricorn</h2>
+		<p>
+			Congratulations! You're now a Capricorn!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-capricorn.pdf" download>
+				<img src="certificate/certificate-capricorn-670.webp" alt="Sample capricorn certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-capricorn.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-capricorn.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="aquarius">
+		<button class="close" popovertarget="aquarius" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Aquarius</h2>
+		<p>
+			Congratulations! You're now a Aquarius!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-aquarius.pdf" download>
+				<img src="certificate/certificate-aquarius-670.webp" alt="Sample aquarius certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-aquarius.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-aquarius.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="pisces">
+		<button class="close" popovertarget="pisces" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Pisces</h2>
+		<p>
+			Congratulations! You're now a Pisces!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-pisces.pdf" download>
+				<img src="certificate/certificate-pisces-670.webp" alt="Sample pisces certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-pisces.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-pisces.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="aries">
+		<button class="close" popovertarget="aries" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Aries</h2>
+		<p>
+			Congratulations! You're now a Aries!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-aries.pdf" download>
+				<img src="certificate/certificate-aries-670.webp" alt="Sample aries certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-aries.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-aries.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="taurus">
+		<button class="close" popovertarget="taurus" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Taurus</h2>
+		<p>
+			Congratulations! You're now a Taurus!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-taurus.pdf" download>
+				<img src="certificate/certificate-taurus-670.webp" alt="Sample taurus certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-taurus.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-taurus.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="gemini">
+		<button class="close" popovertarget="gemini" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Gemini</h2>
+		<p>
+			Congratulations! You're now a Gemini!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-gemini.pdf" download>
+				<img src="certificate/certificate-gemini-670.webp" alt="Sample gemini certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-gemini.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-gemini.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="cancer">
+		<button class="close" popovertarget="cancer" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Cancer</h2>
+		<p>
+			Congratulations! You're now a Cancer!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-cancer.pdf" download>
+				<img src="certificate/certificate-cancer-670.webp" alt="Sample cancer certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-cancer.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-cancer.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="leo">
+		<button class="close" popovertarget="leo" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Leo</h2>
+		<p>
+			Congratulations! You're now a Leo!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-leo.pdf" download>
+				<img src="certificate/certificate-leo-670.webp" alt="Sample leo certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-leo.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-leo.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="virgo">
+		<button class="close" popovertarget="virgo" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Virgo</h2>
+		<p>
+			Congratulations! You're now a Virgo!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-virgo.pdf" download>
+				<img src="certificate/certificate-virgo-670.webp" alt="Sample virgo certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-virgo.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-virgo.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="libra">
+		<button class="close" popovertarget="libra" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Libra</h2>
+		<p>
+			Congratulations! You're now a Libra!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-libra.pdf" download>
+				<img src="certificate/certificate-libra-670.webp" alt="Sample libra certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-libra.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-libra.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="scorpio">
+		<button class="close" popovertarget="scorpio" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Scorpio</h2>
+		<p>
+			Congratulations! You're now a Scorpio!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-scorpio.pdf" download>
+				<img src="certificate/certificate-scorpio-670.webp" alt="Sample scorpio certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-scorpio.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-scorpio.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+
+	<dialog popover id="sagittarius">
+		<button class="close" popovertarget="sagittarius" popovertargetaction="hide" title="Close">&times;</button>
+		<h2>Sagittarius</h2>
+		<p>
+			Congratulations! You're now a Sagittarius!<br>
+			<small>
+				(Made a mistake? You can change your star sign back to your previous one at any time.)
+			</small>
+		</p>
+		<p>
+			<a href="certificate/certificate-sagittarius.pdf" download>
+				<img src="certificate/certificate-sagittarius-670.webp" alt="Sample sagittarius certificate">
+			</a>
+		</p>
+		<p>
+			Download your certificate:
+		</p>
+		<ul>
+			<li><a href="certificate/certificate-sagittarius.pdf" download>Download as PDF document</a></li>
+			<li><a href="certificate/certificate-sagittarius.png" download>Download as PNG image</a></li>
+		</ul>
+	</dialog>
+</body>
+</html>
