@@ -52,7 +52,7 @@ self.addEventListener('install', e=>{
   );
 });
 
-self.adEventListener('fetch', e=>{
+self.addEventListener('fetch', e=>{
 	e.respondWith(
     (async () => {
       const r = await caches.match(e.request);
