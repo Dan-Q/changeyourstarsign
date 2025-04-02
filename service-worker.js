@@ -5,8 +5,8 @@ const addResourcesToCache = async (resources) => {
   await cache.addAll(resources);
 };
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
+self.addEventListener('install', e=>{
+  e.waitUntil(
     addResourcesToCache([
       '/',
       '/index.html',
@@ -52,16 +52,15 @@ self.addEventListener('install', (event) => {
   );
 });
 
-
-self.addEventListener('fetch', function(evt) {
-  evt.respondWith(fromCache(evt.request));
-  evt.waitUntil(update(evt.request));
+self.adEventListener('fetch', e=>{
+	e.respondWith(
+    (async () => {
+      const r = await caches.match(e.request);
+      if(r) return r;
+      const response = await fetch(e.request);
+      const cache = await caches.open(CACHE);
+      cache.put(e.request, response.clone());
+      return response;
+    })(),
+  );
 });
-
-function update(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return fetch(request).then(function (response) {
-      return cache.put(request, response);
-    });
-  });
-}
